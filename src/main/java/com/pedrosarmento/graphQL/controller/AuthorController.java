@@ -2,13 +2,17 @@ package com.pedrosarmento.graphQL.controller;
 
 import com.pedrosarmento.graphQL.controller.modelInput.NewAuthor;
 import com.pedrosarmento.graphQL.model.Author;
+import com.pedrosarmento.graphQL.model.Book;
 import com.pedrosarmento.graphQL.repository.AuthorRepository;
 import com.pedrosarmento.graphQL.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
+import org.springframework.graphql.data.method.annotation.SchemaMapping;
 import org.springframework.stereotype.Controller;
+
+import java.util.List;
 
 @Controller
 public class AuthorController {
@@ -34,4 +38,10 @@ public class AuthorController {
         Author author = new Author(null, newAuthor.firstName(), newAuthor.lastName());
         return authorRepository.addAuthor(author);
     }
+
+    @SchemaMapping
+    public List<Book> books(Author author) {
+        return bookRepository.getAllBookFromAuthorId(author.id());
+    }
+
 }

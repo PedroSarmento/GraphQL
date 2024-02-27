@@ -35,3 +35,15 @@ query book {
   }
 }
 
+query Author {
+  authorById(id: "a05a95eb-fbd8-45c7-9920-962ad8a2d9bd" ) {
+    id,
+    firstName,
+    lastName,
+    books {
+      id,
+      name,
+      pageCount
+    }
+  }
+}
