@@ -1,0 +1,37 @@
+mutation newAuthor {
+  createAuthor(newAuthor: {
+  	firstName: "Jorge",
+    lastName: "Henrique"
+  } ) {
+    id,
+    firstName,
+    lastName
+  }
+}
+
+
+mutation NewBook {
+  createBook(newBook: {
+  	name: "Era uma vez",
+    pageCount: 123,
+    authorId: "d6beefe1-7485-4529-ba95-651629914887"
+  } ) {
+    id,
+    name,
+    pageCount
+  }
+}
+
+
+query book {
+  bookById(id: "38c53197-f644-4d9f-9a35-f85c16a96483" ) {
+    id,
+    name,
+    pageCount,
+    author {
+      lastName,
+      firstName
+    }
+  }
+}
+
